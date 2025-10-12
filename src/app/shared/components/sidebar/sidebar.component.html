@@ -1,0 +1,253 @@
+<div class="sidebar" [class.open]="isMobileOpen">
+  <!-- Mobile Toggle Button -->
+  <div class="mobile-toggle" (click)="toggleMobileSidebar()">
+    <i class="bi bi-list"></i>
+  </div>
+
+  <!-- New Chat Button -->
+  <div class="new-chat-section">
+    <button class="new-chat-btn" (click)="onNewChat()">
+      <i class="bi bi-plus-lg"></i>
+      <span>New Chat</span>
+    </button>
+  </div>
+
+  <!-- Chat History -->
+  <div class="chat-history-section">
+    <div class="section-header">
+      <h3>Recent Chats</h3>
+    </div>
+    
+    <div class="chat-list">
+      <div 
+        *ngFor="let chat of chatHistory" 
+        class="chat-item"
+        [class.active]="currentChatId === chat.id"
+        (click)="onChatSelect(chat)"
+      >
+        <div class="chat-content">
+          <div class="chat-title">{{ chat.title }}</div>
+          <div class="chat-filename">{{ chat.filename }}</div>
+          <div class="chat-timestamp">{{ formatTimestamp(chat.timestamp) }}</div>
+        </div>
+        
+        <button 
+          class="delete-btn"
+          (click)="onDeleteChat(chat.id, $event)"
+          title="Delete chat"
+        >
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+      
+      <div *ngIf="chatHistory.length === 0" class="empty-state">
+        <i class="bi bi-chat-dots"></i>
+        <p>No chat history yet</p>
+        <small>Start a new chat to see it here</small>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Section -->
+  <div class="profile-section">
+    <div class="profile-item" (click)="openProfileModal()">
+      <div class="profile-avatar">
+        <span>VJ</span>
+      </div>
+      <div class="profile-info">
+        <div class="profile-name">Vivek Jangam</div>
+        <div class="profile-plan">Free</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Profile Modal -->
+<div class="modal-overlay" *ngIf="showProfileModal" (click)="closeProfileModal()">
+  <div class="profile-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Profile</h3>
+      <button class="close-btn" (click)="closeProfileModal()">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+    <div class="modal-content">
+      <div class="profile-details">
+        <div class="profile-avatar-large">
+          <span>VJ</span>
+        </div>
+        <div class="profile-info-large">
+          <h4>Vivek Jangam</h4>
+          <p class="plan-badge">Free Plan</p>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="action-btn" (click)="openSettingsModal()">
+          <i class="bi bi-gear"></i>
+          Settings
+        </button>
+        
+        <!-- Logout Button -->
+        <button class="action-btn" data-bs-toggle="modal" data-bs-target="#logoutModal">
+          <i class="bi bi-box-arrow-right"></i> Sign Out
+        </button>
+
+        <!-- Custom Styled Modal -->
+        <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content custom-modal">
+              <div class="modal-body text-center p-4">
+                <h5 class="fw-bold mb-3">Are you sure you want to log out?</h5>
+                <p class="text-light mb-4">
+                  Log out of X2PDF as 
+                  <span class="fw-semibold">vivek&#64;example.com</span>?
+                </p>
+
+                <div class="d-grid gap-2">
+                  <button class="btn log-out-button rounded-pill fw-semibold py-2"
+                          (click)="Logout()" data-bs-dismiss="modal">
+                    Log out
+                  </button>
+                  <button class="btn btn-outline-secondary rounded-pill fw-semibold py-2"
+                          data-bs-dismiss="modal">
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Modal -->
+<div class="modal-overlay" *ngIf="showSettingsModal" (click)="closeSettingsModal()">
+  <div class="settings-modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Settings</h3>
+      <button class="close-btn" (click)="closeSettingsModal()">
+        <i class="bi bi-x"></i>
+      </button>
+    </div>
+    <div class="settings-content">
+      <div class="settings-sidebar">
+        <div class="settings-nav">
+          <div class="nav-item" [class.active]="activeSettingsTab === 'general'" (click)="setActiveSettingsTab('general')">
+            <i class="bi bi-gear"></i>
+            <span>General</span>
+          </div>
+          <div class="nav-item" [class.active]="activeSettingsTab === 'notifications'" (click)="setActiveSettingsTab('notifications')">
+            <i class="bi bi-bell"></i>
+            <span>Notifications</span>
+          </div>
+          <div class="nav-item" [class.active]="activeSettingsTab === 'personalization'" (click)="setActiveSettingsTab('personalization')">
+            <i class="bi bi-arrow-clockwise"></i>
+            <span>Personalization</span>
+          </div>
+          <div class="nav-item" [class.active]="activeSettingsTab === 'connected-apps'" (click)="setActiveSettingsTab('connected-apps')">
+            <i class="bi bi-grid-3x3-gap"></i>
+            <span>Connected apps</span>
+          </div>
+          <div class="nav-item" [class.active]="activeSettingsTab === 'data-controls'" (click)="setActiveSettingsTab('data-controls')">
+            <i class="bi bi-database"></i>
+            <span>Data controls</span>
+          </div>
+          <div class="nav-item" [class.active]="activeSettingsTab === 'security'" (click)="setActiveSettingsTab('security')">
+            <i class="bi bi-key"></i>
+            <span>Security</span>
+          </div>
+          <div class="nav-item" [class.active]="activeSettingsTab === 'account'" (click)="setActiveSettingsTab('account')">
+            <i class="bi bi-person"></i>
+            <span>Account</span>
+          </div>
+        </div>
+      </div>
+      <div class="settings-main">
+        <div class="settings-panel" *ngIf="activeSettingsTab === 'general'">
+          <h4>General</h4>
+          <div class="setting-item">
+            <label>Theme</label>
+            <select>
+              <option>Dark</option>
+              <option>Light</option>
+              <option>Auto</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <label>Accent color</label>
+            <div class="radio-group">
+              <label class="radio-item">
+                <input type="radio" name="accent" checked>
+                <span>Default</span>
+              </label>
+            </div>
+          </div>
+          <div class="setting-item">
+            <label>Language</label>
+            <select>
+              <option>Auto-detect</option>
+              <option>English</option>
+              <option>Spanish</option>
+            </select>
+          </div>
+          <div class="setting-item">
+            <label>Spoken language</label>
+            <select>
+              <option>Auto-detect</option>
+              <option>English</option>
+              <option>Spanish</option>
+            </select>
+            <p class="setting-description">For best results, select the language you mainly speak. If it's not listed, it may still be supported via auto-detection.</p>
+          </div>
+          <div class="setting-item">
+            <label>Voice</label>
+            <div class="voice-setting">
+              <button class="play-btn">
+                <i class="bi bi-play-fill"></i>
+              </button>
+              <select>
+                <option>Ember</option>
+                <option>Nova</option>
+                <option>Shimmer</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        
+        <div class="settings-panel" *ngIf="activeSettingsTab === 'notifications'">
+          <h4>Notifications</h4>
+          <p>Notification settings will be here</p>
+        </div>
+        
+        <div class="settings-panel" *ngIf="activeSettingsTab === 'personalization'">
+          <h4>Personalization</h4>
+          <p>Personalization settings will be here</p>
+        </div>
+        
+        <div class="settings-panel" *ngIf="activeSettingsTab === 'connected-apps'">
+          <h4>Connected apps</h4>
+          <p>Connected apps settings will be here</p>
+        </div>
+        
+        <div class="settings-panel" *ngIf="activeSettingsTab === 'data-controls'">
+          <h4>Data controls</h4>
+          <p>Data controls settings will be here</p>
+        </div>
+        
+        <div class="settings-panel" *ngIf="activeSettingsTab === 'security'">
+          <h4>Security</h4>
+          <p>Security settings will be here</p>
+        </div>
+        
+        <div class="settings-panel" *ngIf="activeSettingsTab === 'account'">
+          <h4>Account</h4>
+          <p>Account settings will be here</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

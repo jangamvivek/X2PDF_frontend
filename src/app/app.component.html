@@ -1,0 +1,14 @@
+
+<div class="app-container">
+  <!-- Sidebar -->
+  <app-sidebar 
+    *ngIf="showSidebar"
+    (chatSelected)="onChatSelected($event)"
+    (newChatRequested)="onNewChatRequested()">
+  </app-sidebar>
+  
+  <!-- Main Content -->
+  <div class="main-content" [class.with-sidebar]="showSidebar">
+    <router-outlet />
+  </div>
+</div>

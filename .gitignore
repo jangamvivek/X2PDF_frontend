@@ -1,0 +1,22 @@
+# Angular build and dependencies
+/node_modules/
+/dist/
+/.angular/
+/.vscode/
+
+# Environment files
+/src/environments/
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env

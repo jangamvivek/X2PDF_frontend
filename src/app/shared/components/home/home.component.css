@@ -1,0 +1,46 @@
+.navbar {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+   height: 70px;
+}
+
+.navbar-brand img {
+  height: 100%;      /* scale logo to navbar height */
+  width: auto;       /* maintain aspect ratio */
+  max-height: 100px;  /* adjust this for padding */
+}
+
+.logo-img {
+  max-height: 100px; /* fits inside navbar */
+  width: auto;
+}
+
+.title {
+  color: #9c6d45;
+}
+
+.btn-get-started{
+  background-color: #9c6d45;
+  color: #fff;
+}
+
+.bg-brown {
+  background-color: #9c6d45;
+}
+
+.btn-create-now {
+  color: #9c6d45;
+  background-color: #fff;
+}
+.icon {
+  color: #9c6d45;
+}
+
+.hero-section {
+  background: white;
+}
+
+.how-it-works-section {
+  background: white;
+}

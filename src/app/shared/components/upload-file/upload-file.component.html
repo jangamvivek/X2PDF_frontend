@@ -1,0 +1,170 @@
+<div class="min-vh-100 d-flex flex-column main text-white">
+  <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center px-3">
+    <div class="w-100 chat-layout" style="max-width: 800px;">
+      <!-- Loader Overlay -->
+      <div *ngIf="isLoading" class="loader-overlay mb-4">
+        <div class="loader-content">
+          <p class="loader-text text-start">Generating...</p>
+          <div class="progress-container">
+            <div class="progress-bar" [style.width.%]="progressValue"></div>
+          </div>
+          <p class="progress-text">{{ progressValue }}% Complete</p>
+        </div>
+      </div>
+
+      <!-- Scrollable Content Area (Generated Response) -->
+      <div class="scroll-area">
+        <!-- Summary Generation Section - Above Input -->
+        <div *ngIf="showSummary" class="summary-container mb-4 mt-5">
+          <div class="chat-message">
+            <div class="message-header">
+              <div class="avatar">
+                <i class="bi bi-robot"></i>
+              </div>
+              <span class="message-title">AI Assistant</span>
+            </div>
+            <div class="message-content">
+              <!-- Loading State with Typing Effect -->
+              <div *ngIf="isGeneratingSummary" class="typing-loader">
+                <div class="typing-indicator">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div class="typing-text">
+                  <span *ngFor="let char of typingText; let i = index" 
+                        [style.animation-delay]="(i * 0.05) + 's'"
+                        class="typing-char">{{ char }}</span>
+                  <span class="cursor">|</span>
+                </div>
+              </div>
+
+              <!-- Generated Summary -->
+              <div *ngIf="!isGeneratingSummary && generatedSummary" class="summary-text">
+                <p [innerHTML]="generatedSummary | linebreak"></p>
+              </div>
+            </div>
+            <div *ngIf="!isGeneratingSummary && generatedSummary" class="message-footer">
+              <div class="message-actions">
+                <button 
+                  type="button" 
+                  class="action-btn"
+                  (click)="askAnotherQuestion()"
+                  title="Ask another question"
+                >
+                  <i class="bi bi-question-circle me-1"></i>
+                  Ask Another
+                </button>
+                <button 
+                  type="button" 
+                  class="action-btn"
+                  (click)="goToDashboard()"
+                  title="Go to dashboard"
+                >
+                  <i class="bi bi-graph-up me-1"></i>
+                  Dashboard
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Input Section -->
+      <div class="input-section mb-5">
+        <h3 *ngIf="!showSummary" class="mb-4 text-center">What can I help you with?</h3>
+        
+        <!-- ChatGPT-style Input Group -->
+        <div class="chatgpt-input-container">
+          <!-- Tools Dropdown (Upload Options) -->
+          <div class="dropdown">
+            <button 
+              class="btn btn-attach" 
+              type="button" 
+              id="dropdownTools" 
+              data-bs-toggle="dropdown" 
+              aria-expanded="false"
+              aria-label="Upload Options"
+            >
+              <i class="bi bi-paperclip"></i>
+            </button>
+
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownTools">
+              <!-- Upload Excel/CSV -->
+              <li>
+                <label class="dropdown-item mb-0 d-flex align-items-center" for="fileUpload">
+                    <i class="bi bi-file-earmark-spreadsheet me-2"></i> Add excel/csv
+                </label>
+
+                <input
+                  type="file"
+                  id="fileUpload"
+                  accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+                  (change)="handleFileUpload($event)"
+                  style="display: none"
+                />
+              </li>
+
+              <!-- Upload Image -->
+              <li>
+                <label class="dropdown-item mb-0 d-flex align-items-center" for="imageUpload">
+                   <i class="bi bi-image me-2"></i> Upload Image</label>
+                <input
+                  type="file"
+                  id="imageUpload"
+                  accept="image/png, image/jpeg, image/jpg, image/webp"
+                  (change)="handleImageUpload($event)"
+                  style="display: none"
+                />
+              </li>
+            </ul>
+          </div>
+
+          <!-- Input Box -->
+          <div class="input-wrapper">
+            <textarea
+              class="chatgpt-input"
+              [placeholder]="selectedFile ? 'Ask a question about your data...' : 'Ask anything'"
+              aria-label="Ask anything"
+              [(ngModel)]="urlInput"
+              [disabled]="isGeneratingSummary"
+              rows="1"
+              (keydown)="onKeyDown($event)"
+              (input)="adjustTextareaHeight($event)"
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            class="btn btn-send" 
+            type="button" 
+            (click)="handleUpload()" 
+            [disabled]="!urlInput.trim() && !selectedFile && !selectedImage"
+            title="Send"
+            aria-label="Send"
+          >
+            <i class="bi bi-send"></i>
+          </button>
+        </div>
+
+        <!-- Show selected file name -->
+        <div *ngIf="selectedFileName" class="file-attachment">
+          <div class="attachment-item">
+            <i class="bi bi-file-earmark-spreadsheet"></i>
+            <span>{{ selectedFileName }}</span>
+            <button 
+              class="btn-remove"
+              (click)="removeSelectedFile()"
+              title="Remove file"
+              aria-label="Remove file"
+            >
+              <i class="bi bi-x"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

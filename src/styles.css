@@ -1,5 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global dark theme tokens */
 
-body {
-  background-color: #f5f6fa;
+:root {
+  --bg-0: #0f1115;         /* page background */
+  --bg-1: #14171c;         /* surface */
+  --bg-2: #1b2027;         /* raised surface */
+  --text-0: #e6e8ec;       /* primary text */
+  --text-1: #b3b9c5;       /* secondary */
+  --accent: #17d7a0;       /* teal/green accent */
+  --accent-strong: #13c292;
+  --muted: #2a3039;        /* strokes/borders */
+  --radius-xl: 20px;       /* large rounded cards */
+  --radius-lg: 14px;
 }
+
+html, body {
+  background-color: var(--bg-0);
+  color: var(--text-0);
+}
+
+/* Utility classes reusable across app */
+.surface {
+  background-color: var(--bg-1);
+  border: 1px solid var(--muted);
+  border-radius: var(--radius-xl);
+}
+
+.btn-accent {
+  background-color: var(--accent);
+  color: #0b1210;
+  border: none;
+  border-radius: 999px;
+}
+
+.text-secondary { color: var(--text-1); }
+
+/* Bootstrap overrides minimal to suit dark theme */
+.bg-light { background-color: var(--bg-1) !important; }
+.text-dark { color: var(--text-0) !important; }

@@ -1,8 +1,8 @@
 .navbar {
-  background: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-   height: 70px;
+  background: rgba(20, 23, 28, 0.6);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--muted);
+  height: 70px;
 }
 
 .navbar-brand img {
@@ -16,31 +16,143 @@
   width: auto;
 }
 
-.title {
-  color: #9c6d45;
-}
+.title { color: var(--text-0); }
 
 .btn-get-started{
-  background-color: #9c6d45;
-  color: #fff;
+  background-color: var(--accent);
+  color: #0b1210;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(23, 215, 160, 0.25);
 }
 
-.bg-brown {
-  background-color: #9c6d45;
-}
+.bg-brown { background-color: var(--bg-2); }
 
 .btn-create-now {
-  color: #9c6d45;
-  background-color: #fff;
+  color: #0b1210;
+  background-color: var(--accent);
+  border: none;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px rgba(23, 215, 160, 0.25);
 }
-.icon {
-  color: #9c6d45;
-}
+.icon { color: var(--accent); }
 
 .hero-section {
-  background: white;
+  background: var(--bg-0);
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+  min-height: 78vh;
 }
 
-.how-it-works-section {
-  background: white;
+/* Neon green aurora edges */
+.hero-section::before {
+  content: "";
+  position: absolute;
+  inset: -10% -15% -20% -15%;
+  background:
+    radial-gradient(800px 600px at 0% 50%, rgba(23, 215, 160, 0.18), transparent 60%),
+    radial-gradient(700px 500px at 100% 40%, rgba(23, 215, 160, 0.12), transparent 60%);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+/* Concentric orbit rings */
+.hero-section::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 46%;
+  width: 520px;
+  height: 520px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(23, 215, 160, 0.28);
+  box-shadow:
+    0 0 0 140px rgba(23, 215, 160, 0.10),
+    0 0 0 300px rgba(23, 215, 160, 0.06);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Glow dots along imaginary orbit paths */
+.hero-section .container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 35% 26%, rgba(23, 215, 160, 0.95), transparent 22%),
+    radial-gradient(circle at 65% 62%, rgba(23, 215, 160, 0.85), transparent 21%),
+    radial-gradient(circle at 58% 38%, rgba(23, 215, 160, 0.75), transparent 20%);
+  filter: blur(1px);
+  mix-blend-mode: screen;
+  animation: orbitPulse 7s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes orbitPulse {
+  0%, 100% { opacity: .65; transform: translateY(0); }
+  50% { opacity: .9; transform: translateY(-4px); }
+}
+
+.features-section { background: var(--bg-0); }
+
+.how-it-works-section { background: var(--bg-0); }
+
+/* Helper text color used in hero per updated HTML */
+.text-muted-light { color: var(--text-1) !important; }
+
+/* Feature cards */
+.feature-card {
+  background: var(--bg-1) !important;
+  border: 1px solid var(--muted);
+  border-radius: var(--radius-xl);
+  color: var(--text-0);
+}
+
+.feature-card .text-muted { color: var(--text-1) !important; }
+
+/* Steps */
+.step-card {
+  background: var(--bg-1);
+  border: 1px solid var(--muted);
+  border-radius: var(--radius-xl);
+}
+
+.badge.bg-brown { background-color: var(--accent) !important; color: #0b1210; }
+
+/* CTA */
+.cta-section {
+  background: var(--bg-1);
+  border-top: 1px solid var(--muted);
+  border-bottom: 1px solid var(--muted);
+}
+
+/* Footer */
+.footer-section { background: var(--bg-1) !important; color: var(--text-1); }
+.footer-section .text-muted { color: var(--text-1) !important; }
+
+/* Typography scale closer to screenshot */
+.hero-section h1.display-3 { letter-spacing: -0.5px; }
+.display-5, .display-3 { color: var(--text-0); }
+.lead { color: var(--text-1); }
+
+/* Green gradient accent for emphasized title span */
+.title {
+  background-image: linear-gradient(90deg, #a3ffe4, var(--accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 991.98px) {
+  .hero-section { padding-top: 5rem; }
+  .hero-section h1 { font-size: 2.25rem; }
+}
+
+@media (max-width: 575.98px) {
+  .hero-section h1 { font-size: 1.9rem; }
+  .feature-card, .step-card { padding: 1.25rem !important; }
 }

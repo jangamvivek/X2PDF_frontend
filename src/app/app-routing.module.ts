@@ -11,7 +11,7 @@ import { PricingComponent } from './shared/components/pricing/pricing.component'
 import { ContactComponent } from './shared/components/contact/contact.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full'},
   { path: 'upload-file', component: UploadFileComponent},
   { path: 'file-preview', component: FilePreviewComponent},
   { 

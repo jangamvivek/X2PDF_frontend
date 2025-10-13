@@ -28,8 +28,8 @@
 .chatgpt-input-container {
   display: flex;
   align-items: flex-end;
-  background: #2f2f2f;
-  border: 1px solid #565869;
+  background: #1b2027;
+  border: 1px solid var(--muted);
   border-radius: 12px;
   padding: 12px;
   gap: 8px;
@@ -38,15 +38,15 @@
 }
 
 .chatgpt-input-container:focus-within {
-  border-color: #565b79;
-  box-shadow: 0 0 0 1px #565b79;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
 }
 
 /* Attachment Button */
 .btn-attach {
   background: transparent;
   border: none;
-  color: #8e8ea0;
+  color: var(--accent);
   padding: 8px;
   border-radius: 6px;
   transition: all 0.2s ease;
@@ -54,8 +54,8 @@
 }
 
 .btn-attach:hover {
-  background: #40414f;
-  color: #ffffff;
+  background: rgba(23, 215, 160, 0.12);
+  color: var(--accent);
 }
 
 .btn-attach i {
@@ -93,9 +93,9 @@
 
 /* Send Button */
 .btn-send {
-  background: #565b79;
+  background: var(--accent);
   border: none;
-  color: white;
+  color: #0b1210;
   padding: 8px;
   border-radius: 6px;
   transition: all 0.2s ease;
@@ -103,14 +103,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 8px 18px rgba(23, 215, 160, 0.28);
 }
 
 .btn-send:hover:not(:disabled) {
-  background: #c18d60;
+  background: var(--accent-strong);
 }
 
 .btn-send:disabled {
-  background: #565869;
+  background: #2a3039;
   cursor: not-allowed;
 }
 
@@ -127,8 +128,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #2f2f2f;
-  border: 1px solid #565869;
+  background: #1b2027;
+  border: 1px solid var(--muted);
   border-radius: 8px;
   padding: 8px 12px;
   color: #ffffff;
@@ -136,13 +137,13 @@
 }
 
 .attachment-item i {
-  color: #c18d60;
+  color: var(--accent);
 }
 
 .btn-remove {
   background: transparent;
   border: none;
-  color: #c18d60;
+  color: var(--accent);
   padding: 4px;
   border-radius: 4px;
   margin-left: auto;
@@ -150,8 +151,8 @@
 }
 
 .btn-remove:hover {
-  background: #40414f;
-  color: #ffffff;
+  background: rgba(23, 215, 160, 0.12);
+  color: var(--accent);
 }
 
 /* Chat Message Styles */
@@ -172,12 +173,12 @@
 .avatar {
   width: 32px;
   height: 32px;
-  background: #c18d60;
+  background: var(--accent);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: #0b1210;
   font-size: 16px;
 }
 
@@ -216,8 +217,8 @@
 
 .action-btn {
   background: transparent;
-  border: 1px solid #565869;
-  color: #8e8ea0;
+  border: 1px solid var(--accent);
+  color: var(--accent);
   padding: 6px 12px;
   border-radius: 6px;
   font-size: 12px;
@@ -228,9 +229,9 @@
 }
 
 .action-btn:hover {
-  background: #40414f;
-  border-color: #8e8ea0;
-  color: #ffffff;
+  background: rgba(23, 215, 160, 0.12);
+  border-color: var(--accent-strong);
+  color: var(--accent-strong);
 }
 
 /* Typing Loader */
@@ -249,7 +250,7 @@
 .typing-indicator span {
   width: 8px;
   height: 8px;
-  background: #c18d60;
+  background: var(--accent);
   border-radius: 50%;
   animation: typing 1.4s infinite ease-in-out;
 }

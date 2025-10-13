@@ -78,11 +78,19 @@ export class UploadFileComponent implements OnInit, OnDestroy {
   private subscribeToSessionChanges() {
     this.sessionSubscription = this.dataPersistenceService.currentSession$.subscribe(session => {
       this.currentSession = session;
-      if (session) {
-        this.restoreSessionData();
-      } else {
+      if (!session) {
         this.clearComponentData();
+        return;
       }
+
+      // If switched to a freshly created session (no data yet), reset UI to empty state
+      if (!session.uploadData && !session.summary) {
+        this.clearComponentData();
+        return;
+      }
+
+      // Otherwise restore whatever data the session holds
+      this.restoreSessionData();
     });
   }
 

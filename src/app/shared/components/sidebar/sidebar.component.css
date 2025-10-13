@@ -20,7 +20,11 @@
   right: -50px;
   width: 40px;
   height: 40px;
-  background: linear-gradient(135deg, #c18d60 0%, #d1b195 100%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 70%, #0b1210) 0%,
+    color-mix(in srgb, var(--accent-strong) 70%, #0b1210) 100%
+  );
   border-radius: 8px;
   cursor: pointer;
   align-items: center;
@@ -46,7 +50,11 @@
 
 .new-chat-btn {
   width: 100%;
-  background: linear-gradient(135deg, #c18d60 0%, #d1b195 100%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 70%, #0b1210) 0%,
+    color-mix(in srgb, var(--accent-strong) 70%, #0b1210) 100%
+  );
   border: none;
   border-radius: 12px;
   padding: 14px 20px;
@@ -63,7 +71,7 @@
 
 .new-chat-btn:hover {
   /* transform: translateY(-2px); */
-  box-shadow: 0 8px 25px rgba(193, 141, 96, 0.3);
+  box-shadow: 0 8px 25px rgba(23, 215, 160, 0.35);
 }
 
 .new-chat-btn i {
@@ -111,13 +119,13 @@
 
 .chat-item:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(193, 141, 96, 0.3);
+  border-color: rgba(23, 215, 160, 0.35);
   /* transform: translateX(4px); */
 }
 
 .chat-item.active {
-  background: rgba(193, 141, 96, 0.15);
-  border-color: #c18d60;
+  background: rgba(23, 215, 160, 0.18);
+  border-color: var(--accent);
 }
 
 .chat-content {
@@ -217,7 +225,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #c18d60 0%, #d1b195 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -349,7 +357,7 @@
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #c18d60 0%, #d1b195 100%);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -393,7 +401,7 @@
 
 .action-btn:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(193, 141, 96, 0.3);
+  border-color: rgba(23, 215, 160, 0.35);
 }
 
 .action-btn i {
@@ -432,9 +440,9 @@
 }
 
 .nav-item.active {
-  background: rgba(193, 141, 96, 0.15);
-  color: #c18d60;
-  border-right: 2px solid #c18d60;
+  background: rgba(23, 215, 160, 0.18);
+  color: var(--accent);
+  border-right: 2px solid var(--accent);
 }
 
 .nav-item i {
@@ -484,7 +492,7 @@
 
 .setting-item select:focus {
   outline: none;
-  border-color: #c18d60;
+  border-color: var(--accent);
 }
 
 .radio-group {
@@ -501,7 +509,7 @@
 }
 
 .radio-item input[type="radio"] {
-  accent-color: #c18d60;
+  accent-color: var(--accent);
 }
 
 .radio-item span {
@@ -649,5 +657,5 @@
 }
 .log-out-button {
   color: #fff;
-  background-color: #c18d60;
+  background-color: var(--accent);
 }

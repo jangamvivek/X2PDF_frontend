@@ -44,15 +44,18 @@ export class SidebarComponent implements OnInit {
 
   onNewChat() {
     this.currentChatId = null;
+    // create and activate a brand-new empty session
+    const newSession = this.dataPersistenceService.createNewSession();
     this.newChatRequested.emit();
-    this.router.navigate(['/upload']);
+    // navigate to empty upload page for the new session
+    this.router.navigate(['/upload-file']);
     this.closeMobileSidebar();
   }
 
   onChatSelect(chat: ChatSession) {
     this.currentChatId = chat.id;
     this.chatSelected.emit(chat);
-    this.router.navigate(['/upload']);
+    this.router.navigate(['/upload-file']);
     this.closeMobileSidebar();
   }
 

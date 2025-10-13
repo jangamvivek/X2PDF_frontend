@@ -4,9 +4,6 @@
 /.angular/
 /.vscode/
 
-# Environment files
-/src/environments/environment.ts
-
 # Logs
 npm-debug.log*
 yarn-debug.log*

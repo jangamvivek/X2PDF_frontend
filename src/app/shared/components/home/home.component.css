@@ -6,16 +6,26 @@
 }
 
 .navbar-brand img {
-  height: 100%;      /* scale logo to navbar height */
-  width: auto;       /* maintain aspect ratio */
-  max-height: 100px;  /* adjust this for padding */
+  height: 40px;      /* scale logo to navbar height */
+  width: 40px;       /* maintain aspect ratio */
 }
 
 .logo-img {
-  max-height: 100px; /* fits inside navbar */
-  width: auto;
+  max-height: 60px; /* fits inside navbar */
+  width: 60px;
 }
 
+.text-gradient {
+  background: linear-gradient(150deg, var(--accent), #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-item:hover {
+  background: linear-gradient(150deg, var(--accent), #ffffff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 .title { color: var(--text-0); }
 
 .btn-get-started{
